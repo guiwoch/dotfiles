@@ -1,0 +1,12 @@
+{
+  "notifications": {
+    "enable": false,
+    "show_notification_popups": false
+  },
+  "widgets": [
+    {
+      "type": "notifications",
+      "enable": true
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+# =========================
+# Secrets — never commit
+# =========================
+# Belt-and-braces: these should not live in this repo at all, but if a config
+# dir is ever stowed wholesale, these patterns keep credentials out.
+**/hosts.yml
+**/rclone.conf
+**/*token*
+**/*secret*
+**/*credential*
+**/*.pem
+**/*.key
+**/id_rsa*
+**/id_ed25519*
+**/.netrc
+**/.npmrc
+**/*cookie*
+
+# =========================
+# Runtime / stateful files
+# =========================
+
+# clipse runtime data (history can contain passwords — keep it out of the repo)
+clipse/**/clipboard_history.json
+clipse/**/clipse.log
+clipse/**/tmp_files/
+
+# hyprland runtime / backups
+hypr/**/hyprland.conf.save*
+hypr/**/hyprland.old
+hypr/**/wallpaper.old
+hypr/**/kb_layout_state
+
+# kitty backups
+kitty/**/*.bak
+
+# neovim generated files
+nvim-lazy/**/lazy-lock.json
+nvim-lazy/**/lazyvim.json
+
+# generated package lists (drift out of date fast; run scripts/sync-pkglist.sh)
+pkglist-repo.txt
+pkglist-aur.txt
+
+# =========================
+# Tooling / local overrides
+# =========================
+**/.claude/settings.local.json
+**/.claude/
+
+# =========================
+# Editor / OS junk
+# =========================
+*.swp
+*.swo
+*~
+.DS_Store
