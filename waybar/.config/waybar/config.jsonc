@@ -13,10 +13,9 @@
         "hyprland/window"
     ],
     "modules-right": [
-        "mpris",
         "tray",
-        "mpd",
         "pulseaudio",
+        "custom/bt-audio-battery",
         "cpu",
         "memory",
         "clock",
@@ -126,9 +125,9 @@
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
         "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}%  {format_source}",
-        "format-bluetooth-muted": "󰝟  {format_source}",
-        "format-muted": "󰝟 {format_source}",
+        "format-bluetooth": "{volume}% ",
+        "format-bluetooth-muted": "󰝟 ",
+        "format-muted": "󰝟",
         //"format-source": "{volume}% ",
         //"format-source-muted": "",
         "format-icons": {
@@ -144,26 +143,12 @@
         },
         "on-click": "pavucontrol"
     },
-    "mpris": {
-        "format": "{player_icon}  {dynamic}",
-        "format-paused": "{status_icon}  <i>{dynamic}</i>",
-        "player-icons": {
-            "default": "",
-            "firefox": "󰈹"
-        },
-        "status-icons": {
-            "playing": "",
-            "paused": ""
-        },
-        "dynamic-order": ["title", "artist"],
-        "dynamic-len": 40,
-        "max-length": 45,
-        "interval": 1,
-        "tooltip-format": "{player}: {title}\n{artist}\n{album}",
-        "on-click": "playerctl play-pause",
-        "on-click-right": "playerctl next",
-        "on-click-middle": "playerctl previous",
-        "on-scroll-up": "playerctl next",
-        "on-scroll-down": "playerctl previous"
+    // Battery of the bluetooth device currently playing audio.
+    // Hidden unless the active sink is bluetooth.
+    "custom/bt-audio-battery": {
+        "exec": "$HOME/.config/waybar/custom_modules/bt-audio-battery.sh",
+        "return-type": "json",
+        "restart-interval": 5,
+        "tooltip": true
     }
 }
