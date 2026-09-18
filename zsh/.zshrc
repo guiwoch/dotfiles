@@ -60,3 +60,6 @@ function zle-keymap-select zle-line-init {
 }
 zle -N zle-keymap-select
 zle -N zle-line-init
+
+# Browser / clipboard helpers (zen, clip)
+source "$HOME/dotfiles/zsh/tools.zsh"
