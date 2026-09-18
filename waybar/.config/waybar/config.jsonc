@@ -14,6 +14,7 @@
     ],
     "modules-right": [
         "tray",
+        "custom/kb-layout",
         "pulseaudio",
         "custom/bt-audio-battery",
         "cpu",
@@ -150,5 +151,13 @@
         "return-type": "json",
         "restart-interval": 5,
         "tooltip": true
+    },
+    // Active keyboard layout (US / US-intl PT). Click to toggle.
+    "custom/kb-layout": {
+        "exec": "$HOME/.config/waybar/custom_modules/kb-layout.sh",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 8,
+        "on-click": "$HOME/.config/hypr/scripts/keyboard-layout-change.sh"
     }
 }

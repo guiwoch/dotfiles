@@ -88,6 +88,7 @@ button:hover {
 #pulseaudio,
 #wireplumber,
 #custom-bt-audio-battery,
+#custom-kb-layout,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -332,3 +333,12 @@ label:focus {
     margin-left: 0;
 }
 
+
+#custom-kb-layout {
+    background-color: #64727D;
+}
+
+#custom-kb-layout.pt {
+    background-color: #e67e22;
+    color: #000000;
+}

@@ -1,0 +1,9 @@
+// US International with dead keys, but " is a plain key (no diaeresis).
+// Used by ~/.config/hypr/scripts/keyboard-layout-change.sh
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "us(intl)"
+    name[Group1] = "English (US, intl., Portuguese)";
+
+    key <AC11> { [ dead_acute, quotedbl, apostrophe, dead_diaeresis ] };
+};
