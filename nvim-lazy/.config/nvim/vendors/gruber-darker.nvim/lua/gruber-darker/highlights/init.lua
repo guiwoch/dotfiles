@@ -15,6 +15,7 @@ local providers = {
 	require("gruber-darker.highlights.telescope"),
 	require("gruber-darker.highlights.rainbow"),
 	require("gruber-darker.highlights.snacks"),
+	require("gruber-darker.highlights.copilot"),
 }
 
 ---Set highlights for configured providers
