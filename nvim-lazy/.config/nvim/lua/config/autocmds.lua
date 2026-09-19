@@ -26,3 +26,6 @@ vim.api.nvim_create_autocmd("FileType", {
         end
     end,
 })
+
+-- Autosave for ~/scratch and the :Note command (see lua/gw/scratch.lua).
+require("gw.scratch").setup()

@@ -130,3 +130,65 @@ clip() {
     wl-copy --type "$mime" < "$1"        # image/pdf bytes, pastes into GIMP/Slack/etc
   fi
 }
+
+# ---------------------------------------------------------------------------
+# scratch -- throwaway drafts, autosaved by nvim (lua/gw/scratch.lua)
+# note    -- named notes that drafts get filed into with :Note <name>
+# ---------------------------------------------------------------------------
+
+: ${SCRATCH_DIR:="$HOME/scratch"}
+export SCRATCH_DIR
+
+scratch() {
+  emulate -L zsh
+  local drafts="$SCRATCH_DIR/drafts"
+  mkdir -p -- "$drafts" "$SCRATCH_DIR/notes"
+  case "$1" in
+    -l|--last)
+      local -a last=("$drafts"/*(N.om[1]))
+      (( $#last )) || { print -u2 "scratch: no drafts yet"; return 1 }
+      nvim -- "$last[1]"
+      ;;
+    -f|--find)
+      # Every line of every draft and note, newest file first; open at the hit.
+      local hit
+      hit="$(cd -- "$SCRATCH_DIR" && rg --line-number --no-heading --color=always \
+               --sortr=modified '.' drafts notes |
+             fzf --ansi --delimiter=: --nth=3.. --no-sort \
+               --preview 'nl -ba {1} | tail -n +$(( {2} > 8 ? {2} - 8 : 1 )) | head -n 17')" || return
+      nvim "+${${hit#*:}%%:*}" -- "$SCRATCH_DIR/${hit%%:*}"
+      ;;
+    -h|--help)
+      print -r -- "usage: scratch        new draft in \$SCRATCH_DIR/drafts
+       scratch -l     reopen the latest draft
+       scratch -f     search drafts and notes
+in nvim, :Note NAME files the draft into notes/NAME.md"
+      ;;
+    "")
+      local file="$drafts/$(date +%F_%H%M).md"
+      [[ -e $file ]] && file="$drafts/$(date +%F_%H%M%S).md"
+      nvim +startinsert -- "$file"
+      ;;
+    *) print -u2 "scratch: unknown option $1"; return 2 ;;
+  esac
+}
+
+note() {
+  emulate -L zsh
+  local notes="$SCRATCH_DIR/notes" name
+  mkdir -p -- "$notes"
+  if (( $# )); then
+    name="$1"
+  else
+    # Pick an existing note, or type a new name and press enter.
+    local picked
+    picked="$(cd -- "$notes" && print -rl -- *(N.om:r) |
+              fzf --print-query --prompt='note> ' --preview 'cat -- {}.md 2>/dev/null')"
+    (( $? == 130 )) && return 1     # esc / ctrl-c
+    local -a out=("${(@f)picked}")
+    name="${out[2]:-$out[1]}"
+    [[ -n $name ]] || return 1
+  fi
+  [[ $name == *.* ]] || name="$name.md"
+  nvim -- "$notes/$name"
+}
