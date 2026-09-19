@@ -14,6 +14,7 @@
     ],
     "modules-right": [
         "tray",
+        "custom/night-light",
         "custom/kb-layout",
         "pulseaudio",
         "custom/bt-audio-battery",
@@ -159,5 +160,13 @@
         "interval": "once",
         "signal": 8,
         "on-click": "$HOME/.config/hypr/scripts/keyboard-layout-change.sh"
+    },
+    // Warm screen filter (hyprsunset). Click to toggle.
+    "custom/night-light": {
+        "exec": "$HOME/.config/waybar/custom_modules/night-light.sh",
+        "return-type": "json",
+        "interval": "once",
+        "signal": 9,
+        "on-click": "$HOME/.config/hypr/scripts/night-light-toggle.sh"
     }
 }
