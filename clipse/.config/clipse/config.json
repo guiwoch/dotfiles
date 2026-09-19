@@ -11,7 +11,7 @@
     "keyBindings": {
         "choose": "enter",
         "clearSelected": "S",
-        "down": "down",
+        "down": "j,down",
         "end": "end",
         "filter": "/",
         "forceQuit": "Q",
@@ -19,7 +19,7 @@
         "more": "?",
         "nextPage": "right",
         "prevPage": "left",
-        "preview": " ",
+        "preview": "space",
         "quit": "esc",
         "remove": "backspace",
         "selectDown": "shift+down",
@@ -27,11 +27,11 @@
         "selectUp": "shift+up",
         "togglePin": "p",
         "togglePinned": "tab",
-        "up": "up",
+        "up": "k,up",
         "yankFilter": "ctrl+s"
     },
     "imageDisplay": {
-        "type": "basic",
+        "type": "kitty",
         "scaleX": 9,
         "scaleY": 9,
         "heightCut": 2
@@ -46,7 +46,7 @@
         "Keychain Access"
     ],
     "autoPaste": {
-        "enabled": false,
+        "enabled": true,
         "keybind": "ctrl+v",
         "buffer": 10
     },
