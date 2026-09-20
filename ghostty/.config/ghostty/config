@@ -22,6 +22,14 @@ window-padding-y = 0
 keybind = ctrl+shift+t=unbind
 keybind = ctrl+shift+w=unbind
 
+# Word deletion moves off ctrl+w, whose muscle memory keeps closing browser
+# tabs. Same trick as the old wezterm config: ctrl+backspace sends the ^W byte,
+# so zsh, readline and nvim insert mode all delete a word with no per-app
+# config; ctrl+w itself is swallowed here so the habit dies. Nothing wants
+# <C-w> - nvim moves between splits with ctrl+hjkl (plugins/tmux.lua).
+keybind = ctrl+backspace=text:\x17
+keybind = ctrl+w=ignore
+
 # Scrollback lives in tmux; keep ghostty's small.
 scrollback-limit = 10000
 
