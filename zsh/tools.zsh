@@ -126,6 +126,9 @@ clip() {
   local mime="$(file --mime-type -b -- "$1")"
   if [[ $mime == text/* || $mime == application/json ]]; then
     wl-copy < "$1"                       # plain text, pastes into editors/chat
+  elif [[ $mime == image/* && $mime != image/png ]]; then
+    # most apps (browsers, Electron, clipse) only accept image/png on paste
+    magick -- "$1" png:- | wl-copy --type image/png
   else
     wl-copy --type "$mime" < "$1"        # image/pdf bytes, pastes into GIMP/Slack/etc
   fi
