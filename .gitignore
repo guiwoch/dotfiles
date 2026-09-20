@@ -27,6 +27,7 @@ clipse/**/tmp_files/
 
 # hyprland runtime / backups
 hypr/**/hyprland.conf.save*
+hypr/**/*.bak-*
 hypr/**/hyprland.old
 hypr/**/wallpaper.old
 hypr/**/kb_layout_state
