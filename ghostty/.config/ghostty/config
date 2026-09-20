@@ -1,8 +1,12 @@
 # Font
-font-family = "JetBrainsMono Nerd Font"
-font-size = 14
+font-family = "Iosevka Nerd Font Mono"
+font-size = 16
+# No ligatures (matches wezterm harfbuzz_features calt=0).
+font-feature = -calt
 
-theme = TokyoNight
+theme = gruber-wezterm
+cursor-style = block
+cursor-style-blink = false
 
 # Disable all GTK notifications
 app-notifications = no-clipboard-copy
@@ -10,8 +14,9 @@ app-notifications = no-clipboard-copy
 # Tabs/splits are tmux's job - keep ghostty a plain fast surface.
 window-decoration = none
 gtk-tabs-location = hidden
-window-padding-x = 6
-window-padding-y = 4
+# ~1 cell sides, none top/bottom (as in wezterm).
+window-padding-x = 8
+window-padding-y = 0
 
 # Don't let ghostty eat keys tmux wants.
 keybind = ctrl+shift+t=unbind
@@ -21,3 +26,8 @@ keybind = ctrl+shift+w=unbind
 scrollback-limit = 10000
 
 confirm-close-surface = false
+
+# Alt+Q lands inside tmux, which owns tabs, splits and scrollback.
+# Every plain window attaches to the same "main" session, so they mirror
+# each other; for an independent one use: ghostty -e tmux new-session -A -s <name>
+command = tmux new-session -A -s main
