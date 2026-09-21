@@ -7,7 +7,7 @@ Scripts live in `~/.config/hypr/scripts/`.
 
 | Keys | Action |
 |---|---|
-| ALT+Q | Terminal (ghostty + tmux) |
+| ALT+Q | Terminal (ghostty) |
 | ALT+E | File manager (nautilus, new window) |
 | ALT+R | App launcher (fuzzel) |
 | ALT+V | Clipboard history (clipse, floating) |

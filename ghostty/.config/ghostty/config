@@ -30,12 +30,10 @@ keybind = ctrl+shift+w=unbind
 keybind = ctrl+backspace=text:\x17
 keybind = ctrl+w=ignore
 
-# Scrollback lives in tmux; keep ghostty's small.
-scrollback-limit = 10000
+# Scrollback is ghostty's own now. Value is BYTES, not lines.
+scrollback-limit = 50000000
 
 confirm-close-surface = false
 
-# Alt+Q lands inside tmux, which owns tabs, splits and scrollback.
-# Every plain window attaches to the same "main" session, so they mirror
-# each other; for an independent one use: ghostty -e tmux new-session -A -s <name>
-command = tmux new-session -A -s main
+# Ghostty opens a plain shell. Attach a multiplexer by hand when wanted:
+#   herdr                      or      tmux new-session -A -s main
