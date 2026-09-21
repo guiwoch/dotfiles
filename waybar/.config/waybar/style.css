@@ -90,6 +90,7 @@ button:hover {
 #custom-bt-audio-battery,
 #custom-kb-layout,
 #custom-night-light,
+#custom-notification,
 #tray,
 #mode,
 #idle_inhibitor,
@@ -354,3 +355,23 @@ label:focus {
     background-color: #f0a030;
     color: #000000;
 }
+
+#custom-notification {
+    /* Material Design bell glyphs; the FontAwesome default has no match. */
+    font-family: "JetBrainsMono Nerd Font Propo", FontAwesome, sans-serif;
+    background-color: #64727D;
+}
+
+/* unread waiting */
+#custom-notification.notification {
+    background-color: #e67e22;
+    color: #000000;
+}
+
+/* do not disturb */
+#custom-notification.dnd-none,
+#custom-notification.dnd-notification {
+    background-color: #393939;
+    color: #7a7a7a;
+}
+

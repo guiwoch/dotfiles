@@ -21,6 +21,7 @@
         "cpu",
         "memory",
         "clock",
+        "custom/notification",
     ],
     // Modules configuration
     // "sway/workspaces": {
@@ -168,5 +169,27 @@
         "interval": "once",
         "signal": 9,
         "on-click": "$HOME/.config/hypr/scripts/night-light-toggle.sh"
+    },
+    // swaync notification centre. Left click opens the panel, right click
+    // toggles do-not-disturb. swaync-client -swb pushes updates, so no polling.
+    "custom/notification": {
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "return-type": "json",
+        "format": "{icon} {text}",
+        "format-icons": {
+            "notification": "󰂚",
+            "none": "󰂜",
+            "dnd-notification": "󰂛",
+            "dnd-none": "󰂛",
+            "inhibited-notification": "󰂚",
+            "inhibited-none": "󰂜",
+            "dnd-inhibited-notification": "󰂛",
+            "dnd-inhibited-none": "󰂛"
+        },
+        "tooltip": true,
+        "escape": true,
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw"
     }
 }
