@@ -56,8 +56,24 @@ pkglist-aur.txt
 # =========================
 # Tooling / local overrides
 # =========================
+# Per-repo Claude Code state: a .claude/ that appears *inside* a package (or at
+# the root of this repo) is scratch for whatever project lives there, never
+# config anyone else should get. settings.local.json is machine-local by
+# definition - it holds the permissions this machine happened to approve.
 **/.claude/settings.local.json
 **/.claude/
+
+# ...with one exception: claude/ is a stow package, so its payload has to be
+# literally named .claude to land at ~/.claude. Re-include the directory first -
+# git cannot re-include a file whose parent directory is excluded - and then
+# only settings.json. Everything else under ~/.claude is state, not config:
+# .credentials.json, 90M of projects/ (transcripts *and* auto-memory), caches,
+# daemon and session files, plus plugins/ and skills/synced/ which are refetched
+# from their marketplaces. hooks/herdr-agent-state.sh is deliberately absent
+# too: herdr writes it, versioned to the herdr that wrote it, and
+# `herdr integration install claude` regenerates it on a new machine.
+!claude/.claude/
+!claude/.claude/settings.json
 
 # =========================
 # Editor / OS junk

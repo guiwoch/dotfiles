@@ -1,0 +1,48 @@
+{
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
+  "model": "opus",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(startup|resume|clear|compact|fork)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true,
+    "clangd-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "claude-notifications-go": {
+      "source": {
+        "source": "github",
+        "repo": "777genius/claude-notifications-go"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "medium"
+    }
+  },
+  "promptSuggestionEnabled": false,
+  "tui": "default",
+  "editorMode": "vim",
+  "agentPushNotifEnabled": true,
+  "env": {
+    "CLAUDE_CODE_TMUX_TRUECOLOR": "1",
+    "EDITOR": "nvim"
+  },
+  "autoScrollEnabled": false
+}
