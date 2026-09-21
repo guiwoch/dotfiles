@@ -1,5 +1,5 @@
 # Pane navigation at the zsh prompt: C-h/j/k/l, the same keys nvim uses for its
-# splits (see nvim/lua/plugins/tmux.lua).
+# splits (see nvim/lua/plugins/herdr.lua).
 #
 # Herdr's own key map is unconditional - a chord bound in [keys] never reaches
 # the pane - so ctrl+h/j/k/l is deliberately NOT bound there, and the innermost
