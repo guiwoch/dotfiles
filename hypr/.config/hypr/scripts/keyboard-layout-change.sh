@@ -5,12 +5,12 @@
 
 current=$(hyprctl getoption input:kb_layout | awk '/^str:/ {print $2}')
 
+# No notification: the waybar custom/kb-layout module already shows the
+# active layout, and it is refreshed by the signal below.
 if [[ "$current" == "us" ]]; then
     hyprctl keyword input:kb_layout us-pt
-    notify-send "Keyboard Layout" "Switched to US International (PT)" -t 2000
 else
     hyprctl keyword input:kb_layout us
-    notify-send "Keyboard Layout" "Switched to US Standard" -t 2000
 fi
 
 # Refresh the waybar layout indicator

@@ -18,8 +18,4 @@ flock -n 9 || exit 0
 
 ddcutil --noverify setvcp 10 "$sign" "$STEP" || exit 1
 
-# Terse output: "VCP 10 C <current> <max>"
-value=$(ddcutil --terse getvcp 10 | awk '{print $4}')
-notify-send "Brightness" "${value}%" -t 1500 \
-    -h int:value:"$value" \
-    -h string:x-canonical-private-synchronous:brightness
+# No notification for per-step changes; the monitor's own OSD shows the level.

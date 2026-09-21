@@ -22,5 +22,4 @@ esac
 ((new > MAX)) && new=$MAX
 
 hyprctl hyprsunset temperature "$new" >/dev/null
-notify-send "Night light" "${new}K" -t 1500 \
-    -h string:x-canonical-private-synchronous:warmth
+# Silenced: no notification for per-step warmth changes.
