@@ -1,0 +1,101 @@
+onboarding = false
+
+[theme]
+name = "vesper"
+auto_switch = false
+
+# Gruber Darker, matching ~/.config/ghostty/themes/gruber-wezterm.
+# surface0 == panel_bg is what flattens the tab chips into plain text.
+[theme.custom]
+panel_bg = "#181818"
+sidebar_bg = "#181818"
+surface0 = "#181818"
+surface1 = "#232323"
+surface_dim = "#52494e"
+active_row_bg = "#232323"
+selection_bg = "#453d41"
+overlay0 = "#e4e4ef"
+overlay1 = "#e4e4ef"
+text = "#f4f4ff"
+subtext0 = "#f4f4ff"
+accent = "#96a6c8"
+red = "#f43841"
+green = "#73c936"
+yellow = "#ffdd33"
+blue = "#96a6c8"
+mauve = "#9e95c7"
+teal = "#95a99f"
+peach = "#cc8c3c"
+
+[ui]
+accent = "#96a6c8"
+# New spaces ask for a name; new tabs do not (names come from content instead).
+prompt_new_workspace_name = true
+prompt_new_tab_name = false
+
+status_indicators = "symbols"
+sidebar_collapsed_mode = "hidden"
+# No gaps and no frame: panes share a single divider line where they meet.
+pane_gaps = false
+pane_outer_borders = false
+pane_borders = "auto"
+tab_bar_position = "top"
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "datetime", format = "%H:%M" },
+]
+tab_bar_right_separator = " · "
+
+# Agent rows: space on the first line, tab name alone on the second so it has the
+# full sidebar width. No "agent" token - every agent here is claude, and the
+# state icon already carries the status.
+[ui.sidebar.agents]
+rows = [["state_icon", "workspace"], ["tab"]]
+
+[ui.toast]
+delivery = "system"
+delay_seconds = 1
+
+[ui.toast.herdr]
+position = "bottom-right"
+
+# No "copied to clipboard" popup.
+[ui.toast.clipboard]
+enabled = false
+
+[ui.sound]
+enabled = false
+done_path = "sounds/done.mp3"
+request_path = "sounds/request.mp3"
+
+[keys]
+# Pane navigation is ctrl+h/j/k/l, but Herdr must NOT own those chords: its key
+# map is unconditional, so binding them here swallows the keystroke before the
+# pane sees it and nvim loses its own split navigation. Instead the innermost
+# program that understands the key handles it and hands off at its edge -
+# nvim via smart-splits' herdr backend, zsh via the widgets in
+# dotfiles/zsh/herdr.zsh, both calling `herdr pane focus`. ctrl+alt stays bound
+# unconditionally as the escape hatch for TUIs that know neither (lazygit, yazi).
+focus_pane_left = ["prefix+h", "ctrl+alt+h"]
+focus_pane_down = ["prefix+j", "ctrl+alt+j"]
+focus_pane_up = ["prefix+k", "ctrl+alt+k"]
+focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
+# Navigate mode (prefix+w): j/k walk the space list, the way they walk every
+# other list here. Arrows still work. Vertical pane motion inside navigate mode
+# gives up j/k to this - h/l still step panes sideways, and prefix+j/k or
+# ctrl+alt+j/k reach a pane above or below from anywhere.
+navigate_pane_up = ""
+navigate_pane_down = ""
+
+# prefix+. : fzf agent picker in a popup. herdr has no navigate mode for agents,
+# so this is the prefix+w equivalent for them - j/k (or ctrl+j/k) to walk,
+# enter to jump, esc to cancel. No alt anywhere: hyprland owns those.
+[[keys.command]]
+key = "prefix+period"
+type = "popup"
+command = "/home/guiwoch/.config/herdr/agent-picker.sh"
+width = "60%"
+height = "40%"

@@ -32,6 +32,16 @@ hypr/**/hyprland.old
 hypr/**/wallpaper.old
 hypr/**/kb_layout_state
 
+# herdr runtime (sockets, logs, session state, installed plugins) and the
+# timestamped config backups its edits leave behind
+herdr/**/*.sock
+herdr/**/*.log
+herdr/**/session.json
+herdr/**/plugins/
+herdr/**/plugins.json
+herdr/**/.plugins.lock
+herdr/**/config.toml.bak*
+
 # kitty backups
 kitty/**/*.bak
 
