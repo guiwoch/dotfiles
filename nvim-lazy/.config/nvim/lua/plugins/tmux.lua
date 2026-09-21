@@ -18,11 +18,23 @@ return {
     -- not by it.
     lazy = false,
     -- Read before the plugin's own bootstrap, which is what sets @pane-is-vim.
-    -- Naming tmux instead of letting it autodetect: autodetection reads
-    -- TERM_PROGRAM, which a pane spawned outside an attached client does not
-    -- always have, and a miss is silent - the tmux side simply stops forwarding.
     init = function()
-        vim.g.smart_splits_multiplexer_integration = "tmux"
+        -- Pick the multiplexer actually hosting this nvim. Autodetection reads
+        -- TERM_PROGRAM, which a pane spawned outside an attached client does
+        -- not always have, and a miss is silent. Both environments set an
+        -- unambiguous variable, so test those instead.
+        --
+        -- tmux first, because it is the innermost one when both are around: a
+        -- tmux pane inside Herdr still inherits HERDR_ENV, and handing that
+        -- nvim to the herdr backend would leave @pane-is-vim unset, so tmux
+        -- would eat C-h before nvim ever saw it.
+        if vim.env.TMUX ~= nil and vim.env.TMUX ~= "" then
+            vim.g.smart_splits_multiplexer_integration = "tmux"
+        elseif vim.env.HERDR_ENV ~= nil and vim.env.HERDR_ENV ~= "" then
+            vim.g.smart_splits_multiplexer_integration = "herdr"
+        else
+            vim.g.smart_splits_multiplexer_integration = false
+        end
     end,
     opts = {
         -- Default is 'wrap', which sends C-j at the bottom window back to the

@@ -63,3 +63,6 @@ zle -N zle-line-init
 
 # Browser / clipboard helpers (zen, clip)
 source "$HOME/dotfiles/zsh/tools.zsh"
+
+# Pane navigation shared with nvim (C-h/j/k/l)
+source "$HOME/dotfiles/zsh/herdr.zsh"
