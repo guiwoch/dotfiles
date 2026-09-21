@@ -100,9 +100,15 @@ navigate_pane_down = ""
 # prefix+. : fzf agent picker in a popup. herdr has no navigate mode for agents,
 # so this is the prefix+w equivalent for them - j/k (or ctrl+j/k) to walk,
 # enter to jump, esc to cancel. No alt anywhere: hyprland owns those.
+#
+# $HOME, not a literal path: this file is stowed to another machine where the
+# home directory is /Users/..., and a command that does not resolve fails
+# silently - the key just does nothing. Safe because herdr runs a popup command
+# through `/bin/sh -c`, so the shell expands it. The script finds its own
+# sibling agent-picker.py relative to itself, so only this one path matters.
 [[keys.command]]
 key = "prefix+period"
 type = "popup"
-command = "/home/guiwoch/.config/herdr/agent-picker.sh"
+command = "$HOME/.config/herdr/agent-picker.sh"
 width = "60%"
 height = "40%"
