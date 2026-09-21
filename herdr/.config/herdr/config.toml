@@ -74,8 +74,15 @@ request_path = "sounds/request.mp3"
 # pane sees it and nvim loses its own split navigation. Instead the innermost
 # program that understands the key handles it and hands off at its edge -
 # nvim via smart-splits' herdr backend, zsh via the widgets in
-# dotfiles/zsh/herdr.zsh, both calling `herdr pane focus`. ctrl+alt stays bound
-# unconditionally as the escape hatch for TUIs that know neither (lazygit, yazi).
+# dotfiles/zsh/herdr.zsh, both calling `herdr pane focus`.
+#
+# A TUI that knows neither - lazygit, yazi, claude - therefore has no ctrl-based
+# pane navigation, and prefix+h/j/k/l is the way out of its pane. ctrl+alt was
+# meant to be that escape hatch, but on this machine it is not one: hyprland.conf
+# binds ALT+CTRL+H/J/K/L to swapwindow, and a compositor bind is taken before the
+# terminal ever sees the chord. It stays listed because it costs nothing and does
+# work on a machine without that Hyprland bind; if it is ever wanted here, move
+# the Hyprland bind rather than adding a second chord.
 focus_pane_left = ["prefix+h", "ctrl+alt+h"]
 focus_pane_down = ["prefix+j", "ctrl+alt+j"]
 focus_pane_up = ["prefix+k", "ctrl+alt+k"]

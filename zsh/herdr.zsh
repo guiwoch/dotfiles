@@ -6,8 +6,10 @@
 # program that understands the key does the moving instead: nvim walks its
 # splits and calls Herdr at its edge (smart-splits' herdr backend), and here zsh
 # calls the same CLI. This is the `is_vim` test the old tmux.conf did, moved
-# into the shell because Herdr has no equivalent. ctrl+alt+h/j/k/l stays bound
-# in Herdr for TUIs that know neither.
+# into the shell because Herdr has no equivalent. A TUI that knows neither -
+# lazygit, yazi, claude - is left with prefix+h/j/k/l: Herdr also binds
+# ctrl+alt+h/j/k/l, but Hyprland takes that chord first for swapwindow, so it
+# never arrives (see herdr/.config/herdr/config.toml).
 #
 # Fallout: C-l no longer clears the screen, and C-j is no longer an accept-line
 # alias (Return still is). C-o is free in zsh's vi keymaps and, unlike C-S-l,
